@@ -1,5 +1,5 @@
 # backend-test
-Technical Test for Backend Engineering Rolee at Rebucom
+technical test for backend engineering role at rebucom
 
 
 ### problem statement
