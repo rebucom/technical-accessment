@@ -12,7 +12,7 @@ your client-side application sends data to the server every 5 minutes through a 
 - use a queue in the backend to process the json data and write it to the database.
 
 ### submission guidelines
-- write clean and readable code. use the DRY approach.
+- write clean and readable code. use the DRY approach. take initiative on how the codebase for both client and server will look like.
 - do not fork this repo; clone and check a new branch with your name as the branch name.
 - when you are done, raise a PR against the qa branch and tag me @desmondsanctity.
 - you have 5 days to submit the solution.
