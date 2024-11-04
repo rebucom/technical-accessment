@@ -1,4 +1,4 @@
-# Technical Test for Backend Engineering Role at Rebucom
+# Technical Test for Backend Engineering Role
 
 ## Problem Statement
 Your client application sends data to the server every 5 minutes through a socket connection. When data is received from thousands of users at once, the app suffers performance issues because each message writes directly to the database. To address this, create a message queue service that manages socket data, batching writes to the database to improve efficiency.
