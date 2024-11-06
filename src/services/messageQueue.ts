@@ -1,6 +1,6 @@
-import Queue, { Job } from 'bull';
-import pool from '../config/database';
-import { processQueueBatch } from '../queue/processQueue';
+import Queue, { Job } from "bull";
+import pool from "../config/database";
+import { processQueueBatch } from "../queue/processQueue";
 
 export interface QueueData {
   msg_id: string;
@@ -9,21 +9,21 @@ export interface QueueData {
   timestamp: string;
 }
 
-const queue_name = 'dataQueue';
-const host = process.env.REDIS_HOST
-const port = process.env.REDIS_PORT
-const password = process.env.REDIS_PASSWORD
+const queue_name = "dataQueue";
+const host = process.env.REDIS_HOST;
+const port = process.env.REDIS_PORT;
+const password = process.env.REDIS_PASSWORD;
 
 // Exit process if any required variable is missing
 if (!(host && port && password)) {
-  console.error('Error: Missing required Redis environment variables.');
+  console.error("Error: Missing required Redis environment variables.");
   process.exit(1);
 }
 const dataQueue = new Queue<QueueData>(queue_name, {
-  redis: {    
+  redis: {
     port: parseInt(port, 10),
-    host ,
-    password , 
+    host,
+    password,
   },
 });
 
@@ -35,8 +35,11 @@ setInterval(async () => {
   const jobCounts = await dataQueue.getJobCounts();
   const { waiting } = jobCounts; // Jobs waiting to be processed
 
-  if (waiting >= 2||BATCH_SIZE_THRESHOLD) {//update
-    console.log(`Queue size (${waiting}) reached the threshold. Processing batch now.`);
+  if (waiting >= 2 || BATCH_SIZE_THRESHOLD) {
+    //update
+    console.log(
+      `Queue size (${waiting}) reached the threshold. Processing batch now.`,
+    );
 
     // Process the queue in batches
     processQueueBatch();
@@ -44,6 +47,5 @@ setInterval(async () => {
     console.log(`Queue size (${waiting}) below threshold. Waiting...`);
   }
 }, CHECK_INTERVAL);
-
 
 export default dataQueue;
