@@ -1,4 +1,4 @@
-# CLIENT repo -  https://github.com/codarbind/queuesockets-frontend.git 
+# CLIENT repo - https://github.com/codarbind/queuesockets-frontend.git
 
 # Technical Test for Backend Engineering Role
 
