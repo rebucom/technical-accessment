@@ -1,5 +1,6 @@
 import Queue, { Job } from 'bull';
 import pool from '../config/database';
+import { processQueueBatch } from '../queue/processQueue';
 
 export interface QueueData {
   msg_id: string;
@@ -18,7 +19,7 @@ if (!(host && port && password)) {
   console.error('Error: Missing required Redis environment variables.');
   process.exit(1);
 }
-const dataQueue = new Queue<QueueData[]>(queue_name, {
+const dataQueue = new Queue<QueueData>(queue_name, {
   redis: {    
     port: parseInt(port, 10),
     host ,
@@ -26,32 +27,23 @@ const dataQueue = new Queue<QueueData[]>(queue_name, {
   },
 });
 
-// Process the items in queue, in batches
-dataQueue.process(async (job: Job<QueueData[]>) => {
-  const dataBatch = job.data;
+// Batch size threshold
+const BATCH_SIZE_THRESHOLD = 1000;
+const CHECK_INTERVAL = 5000; // Check every 5 seconds
+// Periodically check the queue size
+setInterval(async () => {
+  const jobCounts = await dataQueue.getJobCounts();
+  const { waiting } = jobCounts; // Jobs waiting to be processed
 
-  try {
-    const connection =await pool.getConnection();
+  if (waiting >= 2||BATCH_SIZE_THRESHOLD) {//update
+    console.log(`Queue size (${waiting}) reached the threshold. Processing batch now.`);
 
-    const createTableQuery = `
-    CREATE TABLE IF NOT EXISTS messages (
-      msg_id VARCHAR(255) PRIMARY KEY,
-      message TEXT,
-      user_id VARCHAR(255),
-      timestamp DATETIME
-    );
-  `;
-  
-  await connection.query(createTableQuery);
-
-    await connection.query(
-      'INSERT IGNORE INTO messages (msg_id, message, user_id, timestamp) VALUES ?',
-      [dataBatch.map((item) =>[item.msg_id, item.message, item.user_id, item.timestamp] )]
-    );
-    connection.release();
-  } catch (error) {
-    console.error('Batch write error:', error);
+    // Process the queue in batches
+    processQueueBatch();
+  } else {
+    console.log(`Queue size (${waiting}) below threshold. Waiting...`);
   }
-});
+}, CHECK_INTERVAL);
+
 
 export default dataQueue;
