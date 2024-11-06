@@ -1,18 +1,31 @@
-# backend-test
-technical test for backend engineering role at rebucom
+# CLIENT repo - https://github.com/codarbind/queuesockets-frontend.git
 
+# Technical Test for Backend Engineering Role
 
-### problem statement
-your client-side application sends data to the server every 5 minutes through a socket connection. when this message is sent from every thousand users, the app performs poorly because the database is written every time. create a message queue service that handles every socket data sent to the backend to be written to the database.
+## Problem Statement
 
-### expectations
-- set up a backend server with node.js and express.js that also has a socket server.
-- add a mysql database to the setup. local mysql is fine as far as the solution works with mysql.
-- set up a frontend that sends a json payload to the backend every 5 minutes via a socket connection.
-- use a queue in the backend to process the json data and write it to the database.
+Your client application sends data to the server every 5 minutes through a socket connection. When data is received from thousands of users at once, the app suffers performance issues because each message writes directly to the database. To address this, create a message queue service that manages socket data, batching writes to the database to improve efficiency.
 
-### submission guidelines
-- write clean and readable code. use the DRY approach. take initiative on how the codebase for both client and server will look like.
-- do not fork this repo; clone and check a new branch with your name as the branch name.
-- when you are done, raise a PR against the qa branch and tag me @desmondsanctity.
-- you have 5 days to submit the solution.
+## Expectations
+
+1. **Backend Server**
+
+   - Use **Node.js** with **Express.js** to set up a backend server that includes a socket server.
+   - Integrate **MySQL** as the database (local MySQL setup is acceptable as long as it functions with MySQL).
+   - Implement a message queue in the backend to process incoming JSON data and batch-write to the database.
+
+2. **Frontend**
+
+   - Build a simple client-side app that sends a JSON payload to the backend every 5 minutes via a socket connection.
+
+3. **Code Quality**
+   - Write **clean, readable, and DRY code** for both the frontend and backend.
+   - Use a clear structure and modular code organization.
+
+## Submission Guidelines
+
+- **Repository**: Clone this repo, create a new branch with your name, and work on your solution in that branch.
+- **Pull Request**: Once complete, raise a PR against the `qa` branch and tag @desmondsanctity.
+- **Deadline**: You have **3 days** to complete and submit your solution.
+
+If you have any questions, please feel free to reach out. We look forward to seeing your approach!
