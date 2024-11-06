@@ -35,8 +35,7 @@ setInterval(async () => {
   const jobCounts = await dataQueue.getJobCounts();
   const { waiting } = jobCounts; // Jobs waiting to be processed
 
-  if (waiting >= 2 || BATCH_SIZE_THRESHOLD) {
-    //update
+  if (waiting >= BATCH_SIZE_THRESHOLD) {
     console.log(
       `Queue size (${waiting}) reached the threshold. Processing batch now.`,
     );
