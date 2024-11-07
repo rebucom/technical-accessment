@@ -17,17 +17,12 @@ export class InventoryConsumer {
   private subscribeToBrokerEvents(): void {
     logger.info("Inventory Consumer is subscribed to Event Broker");
 
-    this.broker.on("update-inventory", this.handleBatchProcessed.bind(this));
+    this.broker.on("update-inventory", this.updateInventory.bind(this));
     this.broker.on("queue-error", this.handleQueueError.bind(this));
   }
 
-  private async handleBatchProcessed(message: ReadyBatch): Promise<void> {
-    logger.info(`Processing Data of: ${message.id}`);
-    await this.updateInventory(message);
-  }
-
   private async updateInventory(data: ReadyBatch): Promise<void> {
-    logger.info(`Processing Data of: ${data.id}`);
+    logger.info(`Processing Inventory Data of: ${data.id}`);
     for (const message of data.data) {
       await this.saveToDatabase(message);
     }
@@ -48,6 +43,7 @@ export class InventoryConsumer {
       await connection.beginTransaction();
 
       await connection.execute(queries.insertInventory, [
+        "productId",
         productName,
         quantity,
         price,
