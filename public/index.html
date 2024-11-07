@@ -1,0 +1,51 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Socket Client</title>
+  <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+</head>
+
+<body>
+  <h1>Socket Client</h1>
+  <p>Sending data to the server every 5 minutes...</p>
+
+  <script>
+    const socket = io('http://localhost:3333');
+
+    const payload = {
+      userId: 'user123',
+      timestamp: new Date().toISOString(),
+      data: 'Hello from the client!',
+    };
+
+    const inventoryPayload = {
+      productId: 23,
+      productName:  'Product 1',
+      quantity: 50,
+      price:  10.99,
+      timestamp: new Date().toISOString(),
+    };
+
+    function sendData() {
+      console.log('Sending data to server:', inventoryPayload);
+      socket.emit('clientData', inventoryPayload);
+    }
+
+    setInterval(() => {
+      payload.timestamp = new Date().toISOString();
+      sendData();
+    }, 5000); // 300,000 ms = 5 minutes
+
+    // sendData();
+
+    socket.on('connect_error', (error) => {
+      console.error('Connection error:', error);
+    });
+  </script>
+</body>
+
+</html>
