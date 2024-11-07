@@ -1,70 +1,26 @@
-"""
-Service Documentation
-=====================
+# Technical Test for Backend Engineering Role
 
-Problem Statement
---------
-
+## Problem Statement
 Your client application sends data to the server every 5 minutes through a socket connection. When data is received from thousands of users at once, the app suffers performance issues because each message writes directly to the database. To address this, create a message queue service that manages socket data, batching writes to the database to improve efficiency.
 
+## Expectations
 
-Overview
---------
+1. **Backend Server**
+   - Use **Node.js** with **Express.js** to set up a backend server that includes a socket server.
+   - Integrate **MySQL** as the database (local MySQL setup is acceptable as long as it functions with MySQL).
+   - Implement a message queue in the backend to process incoming JSON data and batch-write to the database.
 
-This service provides [briefly describe the service's purpose and functionality].
+2. **Frontend**
+   - Build a simple client-side app that sends a JSON payload to the backend every 5 minutes via a socket connection.
 
-Methods
--------
+3. **Code Quality**
+   - Write **clean, readable, and DRY code** for both the frontend and backend.
+   - Use a clear structure and modular code organization.
 
-### [Method 1]
+## Submission Guidelines
 
-*   **Description:** [Describe the method's purpose and functionality]
-*   **Parameters:**
-    *   [Parameter 1]: [Describe the parameter's purpose and data type]
-    *   [Parameter 2]: [Describe the parameter's purpose and data type]
-*   **Returns:** [Describe the return value's data type and purpose]
-*   **Raises:** [List any exceptions the method may raise]
+- **Repository**: Clone this repo, create a new branch with your name, and work on your solution in that branch.
+- **Pull Request**: Once complete, raise a PR against the `qa` branch and tag @desmondsanctity.
+- **Deadline**: You have **3 days** to complete and submit your solution.
 
-### [Method 2]
-
-*   **Description:** [Describe the method's purpose and functionality]
-*   **Parameters:**
-    *   [Parameter 1]: [Describe the parameter's purpose and data type]
-    *   [Parameter 2]: [Describe the parameter's purpose and data type]
-*   **Returns:** [Describe the return value's data type and purpose]
-*   **Raises:** [List any exceptions the method may raise]
-
-Usage
------
-
-### Example 1
-
-```python
-# Import the service
-from [module_name] import [service_name]
-
-# Create an instance of the service
-service = [service_name]()
-
-# Call a method on the service
-result = service.[method_name]([parameter1], [parameter2])
-```
-
-### Example 2
-
-```python
-# Import the service
-from [module_name] import [service_name]
-
-# Create an instance of the service
-service = [service_name]()
-
-# Call a method on the service
-result = service.[method_name]([parameter1], [parameter2])
-```
-
-Notes
------
-
-*   [Any additional notes or information about the service]
-"""
+If you have any questions, please feel free to reach out. We look forward to seeing your approach!
