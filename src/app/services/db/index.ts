@@ -3,61 +3,7 @@ import queries from "./queries";
 import { CONFIG } from "../../../config";
 import { Pool, PoolConnection } from "mysql2/promise";
 import { DatabaseTransaction } from "../../../types";
-const { DATABASE, URL } = CONFIG;
-
-// export class DatabaseConnection {
-//   private connection: mysql.Connection;
-
-//   constructor() {}
-
-//    async connect() {
-//     logger.info("Initializing Database");
-
-//     try {
-//       // const connection = await mysql.createConnection(URL);
-//       this.connection = await mysql.createConnection(URL);
-
-//       await this.connection.query(`USE ${DATABASE}`);
-
-//       logger.info("Database connected successfully");
-//       return this.connection;
-//       // return new DatabaseConnection(connection);
-//     } catch (error) {
-//       logger.error("Failed to connect to the database:", error);
-//       throw error;
-//     }
-//   }
-
-//   async setupDB(): Promise<void> {
-//     try {
-//       logger.info("Setting Up Database");
-//       logger.info("Running createDB query...");
-
-//       await this.connection.beginTransaction();
-
-//       await this.connection.query(queries.createDB(DATABASE));
-
-//       await this.connection.query(`USE ${DATABASE}`);
-
-//       logger.info("Running createInventory query...");
-//       await this.connection.query(queries.createInventory);
-
-//       await this.connection.commit();
-//     } catch (err) {
-//       await this.connection.rollback();
-//       logger.error("Error Running Scripts:", err);
-//     }
-//   }
-
-//   async execute(query: string, params: any[]): Promise<void> {
-//     await this.connection.execute(query, params);
-//   }
-
-//   async disconnect(): Promise<void> {
-//     await this.connection.end();
-//     logger.info("Database connection closed");
-//   }
-// }
+const {  URL } = CONFIG;
 
 export class DatabaseConnection {
   private pool!: Pool;

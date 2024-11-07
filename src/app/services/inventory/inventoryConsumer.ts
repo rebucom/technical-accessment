@@ -43,7 +43,7 @@ export class InventoryConsumer {
       await connection.beginTransaction();
 
       await connection.execute(queries.insertInventory, [
-        "productId",
+        productId,
         productName,
         quantity,
         price,

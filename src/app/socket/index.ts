@@ -119,16 +119,4 @@ export class SocketService {
     return this.io.engine.clientsCount;
   }
 
-  public broadcast(event: string, data: any): void {
-    this.io.emit(event, data);
-  }
-
-  public disconnect(): Promise<void> {
-    return new Promise((resolve) => {
-      this.io.close(() => {
-        logger.info("Socket server closed");
-        resolve();
-      });
-    });
-  }
 }
