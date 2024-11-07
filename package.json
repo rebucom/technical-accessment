@@ -1,0 +1,25 @@
+{
+  "name": "technical-accessment",
+  "version": "1.0.0",
+  "description": "A simple queue demo",
+  "main": "server.js",
+  "scripts": {
+    "start:server": "node server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rebucom/technical-accessment.git"
+  },
+  "author": "Kevin Uti <kvuti10@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rebucom/technical-accessment/issues"
+  },
+  "homepage": "https://github.com/rebucom/technical-accessment#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.1",
+    "mysql2": "^3.11.4",
+    "socket.io": "^4.8.1"
+  }
+}
