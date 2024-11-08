@@ -1,0 +1,25 @@
+{
+  "name": "technical-accessment",
+  "type": "module",
+  "version": "1.0.0",
+  "main": "server.js",
+  "repository": "https://github.com/rebucom/technical-accessment.git",
+  "author": "Sodiq Farayola <thasquirrie@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "app-root-path": "^3.1.0",
+    "colors": "^1.4.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "helmet": "^8.0.0",
+    "morgan": "^1.10.0",
+    "mysql2": "^3.11.4",
+    "socket.io": "^4.8.1",
+    "winston": "^3.16.0"
+  }
+}
