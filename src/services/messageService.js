@@ -1,8 +1,7 @@
 import { createMessages } from '../factory/messageRepo.js';
 
 const DEFAULT_BATCH_SIZE = 100;
-const DEFAULT_PROCESS_INTERVAL = 30000; // 30 seconds
-
+const DEFAULT_PROCESS_INTERVAL = 30000;
 const messageQueue = [];
 
 const addMessage = async (message) => {

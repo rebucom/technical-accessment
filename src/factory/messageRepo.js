@@ -1,5 +1,12 @@
 import { pool } from '../../connectDB.js';
 
+/**
+ * Inserts multiple messages into the messages table.
+ *
+ * @param {Array} messages - An array of message objects, each containing a userId and content.
+ * @returns {Object} The result of the database query.
+ * @throws Will throw an error if there is an issue with the database query.
+ */
 export const createMessages = async (messages) => {
   const connection = await pool.getConnection();
   try {
@@ -14,6 +21,13 @@ export const createMessages = async (messages) => {
   }
 };
 
+/**
+ * Fetches all messages associated with a given user ID.
+ *
+ * @param {String} userId - The ID of the user whose messages to fetch.
+ * @returns {Array} An array of message objects, ordered by created_at in descending order.
+ * @throws Will throw an error if there is an issue with the database query.
+ */
 export const getMessagesByUserId = async (userId) => {
   const connection = await pool.getConnection();
   try {

@@ -23,7 +23,7 @@ function App() {
       setData(randomData);
 
       console.log({ data });
-    }, 30000);
+    }, 300000);
 
     return () => clearInterval(intervalId);
   }, []);
